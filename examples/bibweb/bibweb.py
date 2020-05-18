@@ -13,14 +13,18 @@ aff = '(aff:"Dynamique" OR aff:"LMD")'
 ####################################
 embedded = True
 #embedded = False
-#kindlist = "numbered"
+iscite = False
+#iscite = True
 kindlist = "bullet"
+#kindlist = "numbered"
 ####################################
 #emphrank = 0
 emphrank = 2
 limrank = 3
 #limrank = 2
 ####################################
+####################################
+
 
 """ Create a webpage for publications from a given author """
 __author__ = "Aymeric Spiga <aymeric.spiga@sorbonne-universite.fr>"
@@ -92,6 +96,13 @@ if __name__ == "__main__":
   else:
       f.write(u'<ul>\n')
 
+  ## include citation counts or not
+  if iscite:
+      canvascite = u'<a href=https://ui.adsabs.harvard.edu/#abs/{bibcode}/citations>[cite={count}]</a>'
+  else:
+      canvascite = u''
+
+
   yearsave = 0
 ################################################
 ################################################
@@ -102,10 +113,11 @@ if __name__ == "__main__":
 {volume}, \
 {year}.<br> \
 {doilink} \
-<a href=https://ui.adsabs.harvard.edu/#abs/{bibcode}>[ADS link]</a>\
-<a href=https://ui.adsabs.harvard.edu/#abs/{bibcode}/citations>[cite={count}]</a>\
-\n\n'
-
+<a href=https://ui.adsabs.harvard.edu/#abs/{bibcode}>[ADS link]</a>'\
++canvascite+\
+u'\n\n'
+################################################
+################################################
 
   for paper in papers:
 
