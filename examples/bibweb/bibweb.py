@@ -83,7 +83,11 @@ if __name__ == "__main__":
       f.write(htmlfile.read())
       htmlfile.close()
 
-  f.write(u'<ol reversed>\n')
+  if kindlist == "numbered": 
+      f.write(u'<ol reversed>\n')
+  else:
+      f.write(u'<ul>\n')
+
   yearsave = 0
   canvas = u'\
 <li line-height=20px>{author}{end_author}, \
@@ -136,7 +140,11 @@ if __name__ == "__main__":
 #     #  char += paper.abstract.encode('ascii', 'xmlcharrefreplace')
      yearsave = paper.year
      f.write(char)
-  f.write(u'\n</ol>')
+
+  if kindlist == "numbered": 
+      f.write(u'\n</ol>')
+  else:
+      f.write(u'\n</ul>')
 
   if embedded:
       htmlfile = open('footer.html','r')
