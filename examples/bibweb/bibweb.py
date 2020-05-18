@@ -121,6 +121,8 @@ u'\n\n'
 
   for paper in papers:
 
+   if "Discussions" not in paper.pub:
+
      ## manage the 'et al.' case     
      dalist = [nn in iii for iii in paper.author]
      rank = dalist.index(True)+1
