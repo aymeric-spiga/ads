@@ -109,14 +109,23 @@ if __name__ == "__main__":
      ## -- 1. no "et al"
      if len(paper.author) <= limrank:
          end_author = ''
+         dlimrank = limrank
      else:
          ## -- 2. "et al" with rank number
          if rank > limrank:
              dalist = [nn in iii for iii in paper.author]
-             end_author = ', et al. [{name}, {initial}. in rank {rank}]'.format(rank=rank,name=nn,initial=fn[0])
+             end_author = ', et al. [{name}, {initial}. rank {rank}]'.format(rank=rank,name=nn,initial=fn[0])
+             dlimrank = limrank-1
          ## -- 3. "et al" only
          else:
-             end_author = ', et al.'        
+             end_author = ', et al.'
+             dlimrank = limrank        
+
+     ## emphasize some of the papers in which author is high on the list
+     prefix = suffix = ''
+     if rank <= emphrank:
+         #prefix, suffix = '<table width="100%" border ="1" cellspacing="1" cellpadding="1"><tr><td>','</td><tr></table>'
+         prefix, suffix = '<font color="red">', '</font>'
 
      ## loop on each entry, format each line
      char = u''
@@ -125,10 +134,11 @@ if __name__ == "__main__":
         yearsave = paper.year
         char += '<h2> {year} </h2>\n\n'.format(year=paper.year)
      #.replace('Spiga','<mark>Spiga</mark>')
-     char += canvas.format(\
-         author = u' and '.join(paper.author[0:limrank]).encode('ascii', 'xmlcharrefreplace').decode('utf8'),\
+
+     addchar = canvas.format(\
+         author = u' and '.join(paper.author[0:dlimrank]).encode('ascii', 'xmlcharrefreplace').decode('utf8'),\
          end_author = end_author,\
-         title = paper.title[0].encode('ascii', 'xmlcharrefreplace').decode('utf8'),\
+         title = prefix+paper.title[0].encode('ascii', 'xmlcharrefreplace').decode('utf8')+suffix,\
          journal = paper.pub,\
          volume = paper.volume,\
          year = paper.year,\
@@ -138,6 +148,9 @@ if __name__ == "__main__":
 #     ## PB
 #     #if paper.abstract is not None:
 #     #  char += paper.abstract.encode('ascii', 'xmlcharrefreplace')
+
+     addchar = prefix + addchar + suffix
+     char = char + addchar
      yearsave = paper.year
      f.write(char)
 
