@@ -8,7 +8,16 @@ nn = u'Spiga'
 year = [2007,2020]
 #aff = '(aff:"*Dynamique*" OR aff:"*LMD*")' #marche pas
 aff = '(aff:"Dynamique" OR aff:"LMD")'
+####################################
 embedded = True
+#embedded = False
+#kindlist = "numbered"
+kindlist = "bullet"
+####################################
+#emphrank = 0
+emphrank = 2
+limrank = 3
+#limrank = 2
 ####################################
 
 """ Create a webpage for publications from a given author """
@@ -55,7 +64,7 @@ if __name__ == "__main__":
   
   ## execute query
   sortz = "date" 
-  #sortz = "citation_count"
+  #sortz = "citation_count" #have to cancel by-year classification
   papers = ads.SearchQuery(q=query,fl=flz,rows=500, sort=sortz)
   
   ### get total citations #you can only loop on papers once!
@@ -87,7 +96,6 @@ if __name__ == "__main__":
 <a href=https://ui.adsabs.harvard.edu/#abs/{bibcode}/citations>[cite={count}]</a>\
 \n\n'
 
-  limrank=3
 
   for paper in papers:
 
