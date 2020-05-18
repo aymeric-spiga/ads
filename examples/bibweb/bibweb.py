@@ -2,11 +2,14 @@
 
 import ads
 
+####################################
 fn = u'Aymeric'
 nn = u'Spiga'
 year = [2007,2020]
 #aff = '(aff:"*Dynamique*" OR aff:"*LMD*")' #marche pas
 aff = '(aff:"Dynamique" OR aff:"LMD")'
+embedded = True
+####################################
 
 """ Create a webpage for publications from a given author """
 __author__ = "Aymeric Spiga <aymeric.spiga@sorbonne-universite.fr>"
@@ -89,7 +92,7 @@ if __name__ == "__main__":
   for paper in papers:
 
      ## manage the 'et al.' case     
-     dalist = ["Spiga" in iii for iii in paper.author]
+     dalist = [nn in iii for iii in paper.author]
      rank = dalist.index(True)+1
      ## -- 1. no "et al"
      if len(paper.author) <= limrank:
@@ -97,8 +100,8 @@ if __name__ == "__main__":
      else:
          ## -- 2. "et al" with rank number
          if rank > limrank:
-             dalist = ["Spiga" in iii for iii in paper.author]
-             end_author = ', et al. [Spiga, A. in rank {rank}]'.format(rank=rank)
+             dalist = [nn in iii for iii in paper.author]
+             end_author = ', et al. [{name}, {initial}. in rank {rank}]'.format(rank=rank,name=nn,initial=fn[0])
          ## -- 3. "et al" only
          else:
              end_author = ', et al.'        
