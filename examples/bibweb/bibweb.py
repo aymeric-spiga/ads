@@ -3,6 +3,8 @@
 import ads
 
 ####################################
+fifi = "pub.html"
+####################################
 fn = u'Aymeric'
 nn = u'Spiga'
 year = [2007,2020]
@@ -76,19 +78,23 @@ if __name__ == "__main__":
   #print(totcit)
 
   ## format results in HTML webpage
-  f = open("test.html",'w')
+  f = open(fifi,'w')
 
+  ## add footer and header
   if embedded:
       htmlfile = open('header.html','r')
       f.write(htmlfile.read())
       htmlfile.close()
 
+  ## set list style
   if kindlist == "numbered": 
       f.write(u'<ol reversed>\n')
   else:
       f.write(u'<ul>\n')
 
   yearsave = 0
+################################################
+################################################
   canvas = u'\
 <li line-height=20px>{author}{end_author}<br> \
 <b>{title}</b><br> \
