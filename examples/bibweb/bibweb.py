@@ -90,11 +90,11 @@ if __name__ == "__main__":
 
   yearsave = 0
   canvas = u'\
-<li line-height=20px>{author}{end_author}, \
-<b>{title}</b>, \
+<li line-height=20px>{author}{end_author}<br> \
+<b>{title}</b><br> \
 <i>{journal}</i>, \
 {volume}, \
-{year}. \
+{year}.<br> \
 {doilink} \
 <a href=https://ui.adsabs.harvard.edu/#abs/{bibcode}>[ADS link]</a>\
 <a href=https://ui.adsabs.harvard.edu/#abs/{bibcode}/citations>[cite={count}]</a>\
@@ -132,7 +132,7 @@ if __name__ == "__main__":
      if paper.year != yearsave:
         print(paper.year)
         yearsave = paper.year
-        char += '<h2> {year} </h2>\n\n'.format(year=paper.year)
+        char += '<p><h2> {year} </h2>\n\n'.format(year=paper.year)
      #.replace('Spiga','<mark>Spiga</mark>')
 
      addchar = canvas.format(\
@@ -145,6 +145,7 @@ if __name__ == "__main__":
          count = str(paper.citation_count),\
          doilink = get_paper_links(paper.identifier),\
          bibcode = paper.bibcode)
+
 #     ## PB
 #     #if paper.abstract is not None:
 #     #  char += paper.abstract.encode('ascii', 'xmlcharrefreplace')
