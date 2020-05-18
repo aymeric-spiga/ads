@@ -65,6 +65,12 @@ if __name__ == "__main__":
 
   ## format results in HTML webpage
   f = open("test.html",'w')
+
+  if embedded:
+      htmlfile = open('header.html','r')
+      f.write(htmlfile.read())
+      htmlfile.close()
+
   f.write(u'<ol reversed>\n')
   yearsave = 0
   canvas = u'\
@@ -120,6 +126,12 @@ if __name__ == "__main__":
      yearsave = paper.year
      f.write(char)
   f.write(u'\n</ol>')
+
+  if embedded:
+      htmlfile = open('footer.html','r')
+      f.write(htmlfile.read())
+      htmlfile.close()
+
   f.close
   
   
