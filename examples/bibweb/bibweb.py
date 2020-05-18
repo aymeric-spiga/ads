@@ -113,7 +113,8 @@ if __name__ == "__main__":
 {volume}, \
 {year}.<br> \
 {doilink} \
-<a href=https://ui.adsabs.harvard.edu/#abs/{bibcode}>[ADS link]</a>'\
+<a href=https://ui.adsabs.harvard.edu/#abs/{bibcode}>[ADS link]</a> \
+<a href=REF/{bibcode2}.pdf>[PDF]</a> '\
 +canvascite+\
 u'\n\n'
 ################################################
@@ -164,7 +165,8 @@ u'\n\n'
          year = paper.year,\
          count = str(paper.citation_count),\
          doilink = get_paper_links(paper.identifier),\
-         bibcode = paper.bibcode)
+         bibcode = paper.bibcode,\
+         bibcode2 = paper.bibcode.replace("&","_26"))
 
 #     ## PB
 #     #if paper.abstract is not None:
