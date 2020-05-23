@@ -61,6 +61,7 @@ if __name__ == "__main__":
   ## create query
   listquery=[]
   listquery.append(author(fn,nn))
+  #listquery.append('abstract:{kw}'.format(kw="mesoscale"))
   listquery.append('year:{ys}-{ye}'.format(ys=year[0],ye=year[1]))
   if aff is not None:
       listquery.append(aff)
