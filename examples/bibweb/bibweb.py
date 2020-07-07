@@ -8,6 +8,7 @@ fifi = "pub.html"
 fn = u'Aymeric'
 nn = u'Spiga'
 year = [2007,2020]
+aff = None
 #aff = '(aff:"*Dynamique*" OR aff:"*LMD*")' #marche pas
 aff = '(aff:"Dynamique" OR aff:"LMD")'
 ####################################
